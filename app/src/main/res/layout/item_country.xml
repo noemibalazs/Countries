@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="country"
+            type="com.noemi.countries.model.Country" />
+
+        <variable
+            name="listener"
+            type="com.noemi.countries.ui.CountryClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{ () -> listener.onCountryClicked(country.code)}">
+
+        <ImageView
+            android:id="@+id/countryIcon"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            app:icon="@{country.emoji}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_hu" />
+
+        <TextView
+            android:id="@+id/countryName"
+            style="@style/bodySemiBoldStyle20"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@{country.name}"
+            app:layout_constraintBottom_toTopOf="@id/countryCapital"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/countryIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Hungary" />
+
+        <TextView
+            android:id="@+id/countryCapital"
+            style="@style/bodyRegularStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/elevation"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@{country.capital}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/countryIcon"
+            app:layout_constraintTop_toBottomOf="@id/countryName"
+            tools:text="Budapest" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
