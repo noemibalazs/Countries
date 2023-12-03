@@ -1,4 +1,4 @@
-# Countries
+## Countries
 
 To do: Design and implement application using Apollo Kotlin SDK to communicate with a GraphQL server.
 - Fetch countries
@@ -13,4 +13,4 @@ Libraries:
 5. Coroutines
 6. Material design
 
-![](../../Downloads/Screenshot_20231203_213545_Countries.jpg)
+   ![Screenshot_20231203_213545_Countries](https://github.com/noemibalazs/Countries/assets/33603567/68d5cfdb-9f36-4a9f-8d16-f118d27cd4a0)#
