@@ -10,7 +10,6 @@ import com.noemi.countries.R
 import com.noemi.countries.databinding.DialogCountryDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class CountryDetailsDialog : DialogFragment() {
 
