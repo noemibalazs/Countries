@@ -14,5 +14,5 @@ data class DetailedCountry(
     val capital: String,
     val currency: String,
     val continent: String,
-    val language: List<String>
+    val language: String
 )

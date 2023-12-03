@@ -11,6 +11,7 @@
 
     <dimen name="elevation">6dp</dimen>
 
+    <dimen name="text_size_icon">36sp</dimen>
     <dimen name="text_size_xlarge">24sp</dimen>
     <dimen name="text_size_large">18sp</dimen>
     <dimen name="text_size_medium">16sp</dimen>

@@ -25,12 +25,11 @@ class CountriesActivity : AppCompatActivity(), CountryClickListener {
             lifecycleOwner = this@CountriesActivity
             countriesRecycleView.adapter = adapter
         }
+
+        countryViewModel.initialiseCountries()
     }
 
     override fun onCountryClicked(code: String) {
-        countryViewModel.getSelectedCountry(code)
-        val country = countryViewModel.state.value.selectedCountry
-        CountryDetailsDialog.getInstance(country = country)
-            .show(supportFragmentManager, CountryDetailsDialog.TAG)
+        CountryDetailsDialog.getInstance(code).show(supportFragmentManager, CountryDetailsDialog.TAG)
     }
 }

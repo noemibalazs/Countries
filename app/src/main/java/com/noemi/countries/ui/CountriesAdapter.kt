@@ -20,7 +20,6 @@ class CountriesAdapter(private val clickListener: CountryClickListener) : ListAd
         holder.bind(getItem(position))
     }
 
-
     inner class CountryViewHolder(private val binding: ItemCountryBinding) :
         ViewHolder(binding.root) {
 

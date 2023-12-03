@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.noemi.countries.ui.CountryViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_medium">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isViewVisible="@{viewModel.countryState.loading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/countryIcon"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:text="@{viewModel.countryState.selectedCountry.emoji}"
+                android:textSize="@dimen/text_size_icon"
+                app:layout_constraintEnd_toStartOf="@id/countryName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/countryName"
+                style="@style/bodySemiBoldStyle20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="@{viewModel.countryState.selectedCountry.name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/countryIcon"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Hungary" />
+
+            <TextView
+                android:id="@+id/capitalLabel"
+                style="@style/bodyRegularStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:text="@string/label_capital"
+                app:layout_constraintStart_toStartOf="@id/countryIcon"
+                app:layout_constraintTop_toBottomOf="@id/countryIcon" />
+
+            <TextView
+                android:id="@+id/countryCapital"
+                style="@style/bodyItalicStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@{viewModel.countryState.selectedCountry.capital}"
+                app:layout_constraintBottom_toBottomOf="@id/capitalLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/capitalLabel"
+                app:layout_constraintTop_toTopOf="@id/capitalLabel"
+                tools:text="Budapest" />
+
+            <TextView
+                android:id="@+id/continentLabel"
+                style="@style/bodyRegularStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="@string/label_continent"
+                app:layout_constraintStart_toStartOf="@id/capitalLabel"
+                app:layout_constraintTop_toBottomOf="@id/capitalLabel" />
+
+            <TextView
+                android:id="@+id/continentName"
+                style="@style/bodyItalicStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@{viewModel.countryState.selectedCountry.continent}"
+                app:layout_constraintBottom_toBottomOf="@id/continentLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/continentLabel"
+                app:layout_constraintTop_toTopOf="@id/continentLabel"
+                tools:text="Europe" />
+
+            <TextView
+                android:id="@+id/currencyLabel"
+                style="@style/bodyRegularStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="@string/label_currency"
+                app:layout_constraintStart_toStartOf="@id/continentLabel"
+                app:layout_constraintTop_toBottomOf="@id/continentLabel" />
+
+            <TextView
+                android:id="@+id/countryCurrency"
+                style="@style/bodyItalicStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@{viewModel.countryState.selectedCountry.currency}"
+                app:layout_constraintBottom_toBottomOf="@id/currencyLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/currencyLabel"
+                app:layout_constraintTop_toTopOf="@id/currencyLabel"
+                tools:text="Ft" />
+
+            <TextView
+                android:id="@+id/languagesLabel"
+                style="@style/bodyRegularStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="@string/label_languages"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/currencyLabel"
+                app:layout_constraintTop_toBottomOf="@id/currencyLabel" />
+
+            <TextView
+                android:id="@+id/countryLanguages"
+                style="@style/bodyItalicStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:text="@{viewModel.countryState.selectedCountry.language}"
+                app:layout_constraintBottom_toBottomOf="@id/languagesLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/languagesLabel"
+                app:layout_constraintTop_toTopOf="@id/languagesLabel"
+                tools:text="Magyar" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressBar"
+            style="@style/Widget.Material3.CircularProgressIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:progressBarState="@{viewModel.countryState.loading}"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

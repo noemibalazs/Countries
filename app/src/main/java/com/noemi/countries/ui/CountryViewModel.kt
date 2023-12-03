@@ -14,16 +14,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CountryViewModel @Inject constructor(private val countryRepository: CountryRepository) :
-    ViewModel() {
+class CountryViewModel @Inject constructor(private val countryRepository: CountryRepository) : ViewModel() {
 
-    private val _state = MutableStateFlow(CountriesState())
-    val state = _state.asStateFlow()
+    private val _countriesState = MutableStateFlow(CountriesState())
+    val countriesState = _countriesState.asStateFlow()
 
-    init {
+    private val _countryState = MutableStateFlow(CountryState())
+    val countryState = _countryState.asStateFlow()
+
+    fun initialiseCountries(){
         viewModelScope.launch {
-            _state.update { it.copy(isLoading = true) }
-            _state.update {
+            _countriesState.update { it.copy(isLoading = true) }
+            _countriesState.update {
                 it.copy(
                     isLoading = false,
                     countries = countryRepository.getCountries()
@@ -32,30 +34,34 @@ class CountryViewModel @Inject constructor(private val countryRepository: Countr
         }
     }
 
-    fun getSelectedCountry(code: String) =
+    fun getSelectedCountry(code: String) {
         viewModelScope.launch {
-            _state.update {
+            _countryState.update { it.copy(isLoading = true) }
+            _countryState.update {
                 it.copy(
+                    isLoading = false,
                     selectedCountry = countryRepository.getCountry(code)
-                )
-            }
-        }
-
-
-    fun dismissCountry() {
-        viewModelScope.launch {
-            _state.update {
-                it.copy(
-                    selectedCountry = null
                 )
             }
         }
     }
 
+    fun dismissCountry() {
+        viewModelScope.launch {
+            _countryState.update {
+                it.copy(selectedCountry = null)
+            }
+        }
+    }
+
+    data class CountryState(
+        val isLoading: Boolean = false,
+        val selectedCountry: DetailedCountry? = null
+    )
+
     data class CountriesState(
         val isLoading: Boolean = false,
-        val countries: List<Country> = emptyList(),
-        val selectedCountry: DetailedCountry? = null
+        val countries: List<Country> = emptyList()
     )
 
     override fun onCleared() {
